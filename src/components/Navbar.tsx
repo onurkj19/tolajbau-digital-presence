@@ -44,7 +44,7 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "glass border-b border-white/5 shadow-lg shadow-black/10"
-          : "glass"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
@@ -55,7 +55,7 @@ const Navbar = () => {
           <img
             src="/logo.png"
             alt="TOLAJBAU Logo"
-            className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+            className="h-32 w-auto transition-transform duration-300 group-hover:scale-105"
           />
         </button>
 
