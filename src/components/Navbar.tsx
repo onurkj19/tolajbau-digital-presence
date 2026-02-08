@@ -44,7 +44,7 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "glass border-b border-white/5 shadow-lg shadow-black/10"
-          : "bg-transparent"
+          : "glass"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
