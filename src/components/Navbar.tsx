@@ -55,7 +55,7 @@ const Navbar = () => {
           <img
             src="/logo.png"
             alt="TOLAJBAU Logo"
-            className="h-32 w-auto bg-white rounded-lg px-3 py-1 transition-transform duration-300 group-hover:scale-105"
+            className="h-12 w-auto bg-white rounded-md px-2 py-0.5 object-contain transition-transform duration-300 group-hover:scale-105"
           />
         </button>
 
