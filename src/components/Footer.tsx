@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <img src="/logo.png" alt="TOLAJBAU Logo" className="h-11 mb-4" />
+            <img src="/logo.png" alt="TOLAJBAU Logo" className="h-14 mb-4" />
             <p className="text-section-dark-foreground/40 text-sm leading-relaxed max-w-xs">
               Professioneller Gerüstbau, fachgerechter Abbruch und zuverlässige
               Entsorgung – aus Erlinsbach für die ganze Schweiz.
