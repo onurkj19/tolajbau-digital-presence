@@ -1,9 +1,11 @@
-import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, Phone, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("#hero");
 
   const links = [
     { label: "Startseite", href: "#hero" },
@@ -12,6 +14,25 @@ const Navbar = () => {
     { label: "Kontakt", href: "#contact" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      // Detect active section
+      const sections = links.map((l) => l.href.substring(1));
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el && el.getBoundingClientRect().top <= 120) {
+          setActiveSection(`#${sections[i]}`);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollTo = (href: string) => {
     setIsOpen(false);
     const el = document.querySelector(href);
@@ -19,54 +40,101 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-secondary/95 backdrop-blur-md border-b border-primary/20">
-      <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        <button onClick={() => scrollTo("#hero")} className="font-display text-2xl font-bold tracking-tight text-primary-foreground">
-          TOLAJ<span className="text-primary">BAU</span>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "glass border-b border-white/5 shadow-lg shadow-black/10"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto flex items-center justify-between h-18 px-4 py-3">
+        <button
+          onClick={() => scrollTo("#hero")}
+          className="flex items-center group"
+        >
+          <img
+            src="/logo.png"
+            alt="TOLAJBAU Logo"
+            className="h-10 transition-transform duration-300 group-hover:scale-105"
+          />
         </button>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-1">
           {links.map((l) => (
             <button
               key={l.href}
               onClick={() => scrollTo(l.href)}
-              className="text-sm font-medium text-secondary-foreground/80 hover:text-primary transition-colors"
+              className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-lg ${
+                activeSection === l.href
+                  ? "text-primary"
+                  : "text-white/70 hover:text-white hover:bg-white/5"
+              }`}
             >
               {l.label}
+              {activeSection === l.href && (
+                <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-primary rounded-full" />
+              )}
             </button>
           ))}
-          <a href="tel:+41762152094">
-            <Button size="sm" className="gap-2">
-              <Phone size={14} /> Anrufen
+          <div className="ml-4 flex items-center gap-3">
+            <a href="tel:+41762152094">
+              <Button
+                size="sm"
+                variant="outline"
+                className="gap-2 border-primary/30 text-primary hover:bg-primary/10 hover:text-primary"
+              >
+                <Phone size={14} />
+                Anrufen
+              </Button>
+            </a>
+            <Button
+              size="sm"
+              className="gap-2"
+              onClick={() => scrollTo("#contact")}
+            >
+              Offerte
+              <ArrowRight size={14} />
             </Button>
-          </a>
+          </div>
         </div>
 
         {/* Mobile toggle */}
-        <button className="md:hidden text-secondary-foreground" onClick={() => setIsOpen(!isOpen)}>
+        <button
+          className="lg:hidden text-white/80 hover:text-white p-2 rounded-lg hover:bg-white/5 transition-colors"
+          onClick={() => setIsOpen(!isOpen)}
+        >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-secondary border-t border-primary/20 animate-fade-in">
-          <div className="flex flex-col p-4 gap-3">
+        <div className="lg:hidden glass border-t border-white/5 animate-slide-down">
+          <div className="flex flex-col p-5 gap-1">
             {links.map((l) => (
               <button
                 key={l.href}
                 onClick={() => scrollTo(l.href)}
-                className="text-left py-2 text-secondary-foreground/80 hover:text-primary transition-colors"
+                className={`text-left py-3 px-4 rounded-lg transition-all duration-200 ${
+                  activeSection === l.href
+                    ? "text-primary bg-primary/10 font-medium"
+                    : "text-white/70 hover:text-white hover:bg-white/5"
+                }`}
               >
                 {l.label}
               </button>
             ))}
-            <a href="tel:+41762152094">
-              <Button className="w-full gap-2 mt-2">
-                <Phone size={14} /> +41 76 215 20 94
+            <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-white/10">
+              <a href="tel:+41762152094">
+                <Button variant="outline" className="w-full gap-2 border-primary/30 text-primary hover:bg-primary/10">
+                  <Phone size={14} /> +41 76 215 20 94
+                </Button>
+              </a>
+              <Button className="w-full gap-2" onClick={() => scrollTo("#contact")}>
+                Offerte anfordern <ArrowRight size={14} />
               </Button>
-            </a>
+            </div>
           </div>
         </div>
       )}

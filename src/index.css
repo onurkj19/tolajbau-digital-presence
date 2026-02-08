@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,39 +7,39 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 120 10% 8%;
+    --foreground: 150 10% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 120 10% 8%;
+    --card-foreground: 150 10% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 120 10% 8%;
+    --popover-foreground: 150 10% 8%;
 
-    --primary: 145 72% 34%;
+    --primary: 142 64% 38%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 120 5% 12%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 150 8% 10%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 120 5% 95%;
-    --muted-foreground: 120 5% 40%;
+    --muted: 150 6% 95%;
+    --muted-foreground: 150 5% 42%;
 
-    --accent: 145 72% 34%;
+    --accent: 142 64% 38%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 120 5% 88%;
-    --input: 120 5% 88%;
-    --ring: 145 72% 34%;
+    --border: 150 6% 90%;
+    --input: 150 6% 90%;
+    --ring: 142 64% 38%;
 
-    --radius: 0.5rem;
+    --radius: 0.625rem;
 
-    --hero-overlay: linear-gradient(135deg, hsla(120, 10%, 5%, 0.85), hsla(145, 50%, 15%, 0.7));
-    --section-dark-bg: 120 10% 5%;
-    --section-dark-fg: 0 0% 95%;
-    --green-glow: 145 72% 45%;
+    --hero-overlay: linear-gradient(160deg, hsla(150, 12%, 4%, 0.92), hsla(142, 40%, 10%, 0.78));
+    --section-dark-bg: 150 12% 5%;
+    --section-dark-fg: 0 0% 96%;
+    --green-glow: 142 72% 45%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -52,25 +52,25 @@
   }
 
   .dark {
-    --background: 120 10% 5%;
-    --foreground: 0 0% 95%;
-    --card: 120 8% 10%;
-    --card-foreground: 0 0% 95%;
-    --popover: 120 8% 10%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 145 72% 40%;
+    --background: 150 12% 5%;
+    --foreground: 0 0% 96%;
+    --card: 150 10% 9%;
+    --card-foreground: 0 0% 96%;
+    --popover: 150 10% 9%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 142 64% 42%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 120 5% 18%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 120 5% 15%;
-    --muted-foreground: 120 5% 60%;
-    --accent: 145 72% 40%;
+    --secondary: 150 8% 16%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 150 6% 14%;
+    --muted-foreground: 150 5% 58%;
+    --accent: 142 64% 42%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 95%;
-    --border: 120 5% 20%;
-    --input: 120 5% 20%;
-    --ring: 145 72% 40%;
+    --destructive-foreground: 0 0% 96%;
+    --border: 150 6% 18%;
+    --input: 150 6% 18%;
+    --ring: 142 64% 42%;
   }
 }
 
@@ -81,21 +81,70 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', sans-serif;
+  }
+
+  ::selection {
+    background-color: hsl(142 64% 38% / 0.25);
+    color: hsl(150 10% 8%);
   }
 }
 
 @layer utilities {
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(145, 72%, 40%), hsl(145, 72%, 55%));
+    background-image: linear-gradient(135deg, hsl(142, 64%, 42%), hsl(142, 72%, 58%));
   }
 
   .section-dark {
     background-color: hsl(var(--section-dark-bg));
     color: hsl(var(--section-dark-fg));
   }
+
+  .glass {
+    background: hsla(150, 12%, 5%, 0.7);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  }
+
+  .glass-light {
+    background: hsla(0, 0%, 100%, 0.8);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  }
+
+  .glow-sm {
+    box-shadow: 0 0 20px -5px hsl(142 64% 38% / 0.3);
+  }
+
+  .glow-md {
+    box-shadow: 0 0 40px -10px hsl(142 64% 38% / 0.35);
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(150 12% 5%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(142 64% 38% / 0.4);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(142 64% 38% / 0.6);
 }
