@@ -89,7 +89,7 @@ const HeroSection = () => {
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-4 pt-32 pb-12 flex-1 flex flex-col justify-center">
+      <div className="relative z-10 container mx-auto px-4 pt-40 pb-12 flex-1 flex flex-col justify-center">
         <div className="max-w-4xl">
           <div
             className="inline-flex items-center gap-2 bg-primary/15 border border-primary/25 rounded-full px-5 py-2 mb-8 animate-fade-in"
