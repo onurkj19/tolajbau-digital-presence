@@ -44,18 +44,50 @@ const ContactSection = () => {
   });
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
-    setTimeout(() => {
-      toast({
-        title: "Nachricht gesendet",
-        description:
-          "Vielen Dank! Wir melden uns schnellstmöglich bei Ihnen.",
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "YOUR_ACCESS_KEY_HERE",
+          subject: `Neue Anfrage von ${form.name} – TOLAJBAU Website`,
+          from_name: "TOLAJBAU Website",
+          name: form.name,
+          email: form.email,
+          phone: form.phone || "Nicht angegeben",
+          message: form.message,
+        }),
       });
-      setForm({ name: "", email: "", phone: "", message: "" });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast({
+          title: "Nachricht gesendet",
+          description:
+            "Vielen Dank! Wir melden uns schnellstmöglich bei Ihnen.",
+        });
+        setForm({ name: "", email: "", phone: "", message: "" });
+      } else {
+        toast({
+          title: "Fehler",
+          description: "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+          variant: "destructive",
+        });
+      }
+    } catch {
+      toast({
+        title: "Fehler",
+        description: "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+        variant: "destructive",
+      });
+    } finally {
       setSending(false);
-    }, 800);
+    }
   };
 
   return (

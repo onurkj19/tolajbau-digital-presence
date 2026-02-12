@@ -1,4 +1,4 @@
-import { ArrowRight, Shield, CheckCircle, ChevronDown, Phone } from "lucide-react";
+import { ArrowRight, Shield, CheckCircle, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -114,7 +114,7 @@ const HeroSection = () => {
             und zuverlässige Entsorgung – aus Erlinsbach für die ganze Schweiz.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center gap-6">
             <Button
               size="lg"
               className="text-base gap-2 px-8 h-13 glow-sm hover:glow-md transition-shadow duration-500"
@@ -125,9 +125,9 @@ const HeroSection = () => {
             </Button>
             <a
               href="tel:+41762152094"
-              className="flex items-center gap-3 text-white text-xl sm:text-2xl font-bold font-display tracking-wide hover:text-primary transition-colors"
+              className="flex items-center gap-3 text-white text-2xl sm:text-3xl font-bold font-display tracking-wide hover:text-primary transition-colors"
             >
-              <Phone size={22} className="text-primary" />
+              <Phone size={26} className="text-primary" />
               +41 76 215 20 94
             </a>
           </div>

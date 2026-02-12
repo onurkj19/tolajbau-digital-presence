@@ -43,11 +43,11 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "glass border-b border-white/5 shadow-lg shadow-black/10"
+          ? "bg-[#C0C0C0]/20 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/10"
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-4 py-4">
+      <div className="container mx-auto flex items-center justify-between px-4 py-2">
         <button
           onClick={() => scrollTo("#hero")}
           className="flex items-center group"
@@ -110,7 +110,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="lg:hidden glass border-t border-white/5 animate-slide-down">
+        <div className="lg:hidden bg-[#C0C0C0]/20 backdrop-blur-md border-t border-white/10 animate-slide-down">
           <div className="flex flex-col p-5 gap-1">
             {links.map((l) => (
               <button
