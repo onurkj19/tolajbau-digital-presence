@@ -1,4 +1,4 @@
-import { ArrowRight, Shield, CheckCircle, ChevronDown } from "lucide-react";
+import { ArrowRight, Shield, CheckCircle, ChevronDown, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
