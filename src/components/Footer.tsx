@@ -109,6 +109,21 @@ const Footer = () => {
         </div>
       </div>
 
+      {/* Powered by */}
+      <div className="border-t border-white/5">
+        <div className="container mx-auto px-4 py-5 flex flex-col items-center gap-2">
+          <span className="text-section-dark-foreground/30 text-xs">This website powered by</span>
+          <a
+            href="https://www.vertexwebsolutions.ch/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:opacity-80 transition-opacity"
+          >
+            <img src="/vertex-logo.png" alt="Vertex Web Solutions" className="h-10 w-auto" />
+          </a>
+        </div>
+      </div>
+
       {/* Bottom bar */}
       <div className="border-t border-white/5">
         <div className="container mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
